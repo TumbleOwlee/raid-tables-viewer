@@ -1,4 +1,4 @@
-## Interface: 100007
+## Interface: 100100
 ## Version: 0.1.0
 ## Title: RaidTablesViewer
 ## Notes: This addon is used to display data tracked by another player using RaidTables.
