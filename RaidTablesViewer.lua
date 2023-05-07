@@ -1450,7 +1450,7 @@ local function SetupUserInterface()
     -----------------------------------------------------------------------------------------------------------------------
     -- Accept Sharing Dialog: Header
     -----------------------------------------------------------------------------------------------------------------------
-    addonDB.Widgets.Dialogs.AcceptSharing.Header = CreateHeading("RAID TABLES", GetWidth(addonDB.Widgets.Dialogs.AcceptSharing.Frame) - 20, addonDB.Widgets.Dialogs.AcceptSharing.Frame, 10, -10, false, 14)
+    addonDB.Widgets.Dialogs.AcceptSharing.Header = CreateHeading("RAID TABLES VIEWER", GetWidth(addonDB.Widgets.Dialogs.AcceptSharing.Frame) - 20, addonDB.Widgets.Dialogs.AcceptSharing.Frame, 10, -10, false, 14)
 
     -----------------------------------------------------------------------------------------------------------------------
     -- Accept Sharing Dialog: Label 
