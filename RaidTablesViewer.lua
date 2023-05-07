@@ -19,17 +19,12 @@ local addonDB = {
             FreeItems = {},
             Items = {},
         },
-        Minimap = {},
     },
     Accepted = {},
     Rejected = {},
     Configs = {},
     Options = {
         Scaling = 1.0,
-        Minimap = {
-            X = 10,
-            Y = 10,
-        },
     },
     MsgBuffer = {}
 }
@@ -1833,12 +1828,6 @@ addonDB.Widgets.Addon:SetScript("OnEvent", function(self, event, arg1, ...)
         addonDB.Configs = MergeTables(addonDB.Configs or {}, savedVariable.Configs or {})
 
         ---------------------------------------------------------------------------------------------------------------
-        -- Set Minimap Position
-        ---------------------------------------------------------------------------------------------------------------
-        addonDB.Widgets.Minimap.Button:SetPoint("CENTER", Minimap, "BOTTOMLEFT", addonDB.Options.Minimap.X, addonDB.Options.Minimap.Y)
-        SetSize(addonDB.Widgets.Minimap.Button, 32, 32)
-
-        ---------------------------------------------------------------------------------------------------------------
         -- Setup User Interface
         ---------------------------------------------------------------------------------------------------------------
         SetupUserInterface()
@@ -1986,78 +1975,34 @@ end
 SlashCmdList.RAID_TABLES_VIEWER_COMMAND = SlashCommandHandler
 
 -----------------------------------------------------------------------------------------------------------------------
--- Create Minimap Button
+-- Add addon to addon compartment frame
 -----------------------------------------------------------------------------------------------------------------------
-addonDB.Widgets.Minimap.Button = CreateFrame("Button", addonName, Minimap)
-SetPoint(addonDB.Widgets.Minimap.Button, "CENTER", Minimap, "BOTTOMLEFT", 10, -10)
-addonDB.Widgets.Minimap.Overlay = addonDB.Widgets.Minimap.Button:CreateTexture(nil, "OVERLAY")
-addonDB.Widgets.Minimap.Overlay:SetSize(50, 50)
-addonDB.Widgets.Minimap.Overlay:SetTexture(136430) --"Interface\\Minimap\\MiniMap-TrackingBorder"
-addonDB.Widgets.Minimap.Overlay:SetPoint("TOPLEFT", addonDB.Widgets.Minimap.Button, "TOPLEFT", 0, 0)
-addonDB.Widgets.Minimap.Background = addonDB.Widgets.Minimap.Button:CreateTexture(nil, "BACKGROUND")
-addonDB.Widgets.Minimap.Background:SetSize(24, 24)
-addonDB.Widgets.Minimap.Background:SetTexture(136467) --"Interface\\Minimap\\UI-Minimap-Background"
-addonDB.Widgets.Minimap.Background:SetPoint("CENTER", addonDB.Widgets.Minimap.Button, "CENTER", 0, 1)
-addonDB.Widgets.Minimap.Icon = addonDB.Widgets.Minimap.Button:CreateTexture(nil, "ARTWORK")
-addonDB.Widgets.Minimap.Icon:SetSize(18, 18)
-addonDB.Widgets.Minimap.Icon:SetTexture("Interface\\AddOns\\RaidTablesViewer\\img\\RaidTablesViewer.png")
-addonDB.Widgets.Minimap.Icon:SetPoint("CENTER", addonDB.Widgets.Minimap.Button, "CENTER", 0, 1)
-addonDB.Widgets.Minimap.Button:SetMovable(true)
-addonDB.Widgets.Minimap.Button:EnableMouse(true)
-addonDB.Widgets.Minimap.Button:RegisterForDrag("LeftButton")
-addonDB.Widgets.Minimap.Button:SetScript("OnEnter", function(self)
-    GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-    GameTooltip:SetText(addonName)
-    GameTooltip:AddLine("Click to show ".. addonName .. " frame", 1, 1, 1)
-    GameTooltip:Show()
-end)
-addonDB.Widgets.Minimap.Button:SetScript("OnLeave", function() GameTooltip:Hide() end)
-addonDB.Widgets.Minimap.Button:SetScript("OnClick", function(self)
-    if addonDB.Widgets.Addon:IsShown() then
-        if IsDialogShown() then
-            return
+AddonCompartmentFrame:RegisterAddon({
+    text = addonName,
+    icon = "Interface\\AddOns\\RaidTablesViewer\\img\\RaidTablesViewer.png",
+    registerForAnyClick = true,
+    notCheckable = true,
+    func = function(btn, arg1, arg2, checked, mouseButton)
+        if mouseButton == "LeftButton" then
+            if addonDB.Widgets.Addon:IsShown() then
+                if IsDialogShown() then
+                    return
+                end
+                addonDB.Widgets.Addon:Hide()
+            else
+                addonDB.Widgets.Addon:Show()
+            end
+        elseif mouseButton == "MiddleButton" then
+        else
         end
-        addonDB.Widgets.Addon:Hide()
-    else
-        addonDB.Widgets.Addon:Show()
+    end,
+    funcOnEnter = function()
+        GameTooltip:SetOwner(AddonCompartmentFrame, "ANCHOR_TOPRIGHT")
+        GameTooltip:SetText(addonName)
+        GameTooltip:AddLine("Click to toggle ".. addonName .. " frame", 1, 1, 1)
+        GameTooltip:Show()
     end
-end)
-addonDB.Widgets.Minimap.Button:SetScript("OnDragStart", function(self)
-    self.moving = true
-    self:StartMoving()
-end)
-addonDB.Widgets.Minimap.Button:SetScript("OnDragStop", function(self)
-    self.moving = false
-    self:StopMovingOrSizing()
-    local x, y = GetCursorPosition()
-    local scale = Minimap:GetEffectiveScale()
-    local left = Minimap:GetLeft()
-    local bottom = Minimap:GetBottom()
-
-    x = x / scale
-    y = y / scale
-
-    addonDB.Options.Minimap.X = x - left
-    addonDB.Options.Minimap.Y = y - bottom
-end)
-addonDB.Widgets.Minimap.Button:SetScript("OnUpdate", function(self)
-    if self.moving then
-        local x, y = GetCursorPosition()
-        local scale = Minimap:GetEffectiveScale()
-        local left = Minimap:GetLeft()
-        local right = Minimap:GetRight()
-        local top = Minimap:GetTop()
-        local bottom = Minimap:GetBottom()
-
-        x = x / scale
-        y = y / scale
-
-        if x > left and x < right and y > bottom and y < top then
-            self:ClearAllPoints()
-            self:SetPoint("CENTER", Minimap, "BOTTOMLEFT", x - left, y - bottom)
-        end
-    end
-end)
+})
 
 -----------------------------------------------------------------------------------------------------------------------
 -- Hide Addon Frame Initially
