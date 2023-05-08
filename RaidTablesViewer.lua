@@ -593,7 +593,7 @@ local function CreateButton(parent, label, width, height, colorBackground, color
 
     local buttonText = button:CreateFontString(nil, "ARTWORK")
     SetPoint(buttonText, "CENTER")
-    buttonText:SetFont("Fonts\\FRIZQT__.TTF", Scaled(12), "BOLD")
+    buttonText:SetFont("Interface\\Addons\\RaidTablesViewer\\fonts\\UnicodeFont\\WarSansTT-Bliz-500.ttf", Scaled(12), "BOLD")
     if textColor then
         buttonText:SetTextColor(textColor.r, textColor.g, textColor.b)
     else
@@ -626,7 +626,7 @@ end
 local function CreateLabel(label, parent, x, y, colour, anchor, fontSize)
     local c = colour or color.Gold
     local labelString = parent:CreateFontString(nil, "ARTWORK")
-    labelString:SetFont("Fonts\\FRIZQT__.TTF", Scaled(fontSize or 12), "NONE")
+    labelString:SetFont("Interface\\Addons\\RaidTablesViewer\\fonts\\UnicodeFont\\WarSansTT-Bliz-500.ttf", Scaled(fontSize or 12), "NONE")
     labelString:SetTextColor(c.r, c.g, c.b)
     labelString:SetText(label)
     if x ~= nil and y ~= nil then
@@ -1273,7 +1273,7 @@ local function SetupUserInterface()
     -----------------------------------------------------------------------------------------------------------------------
     addonDB.Widgets.CreatedBy = addonDB.Widgets.Addon:CreateFontString(nil, "ARTWORK")
     SetPoint(addonDB.Widgets.CreatedBy, "BOTTOMLEFT", 10, 6)
-    addonDB.Widgets.CreatedBy:SetFont("Fonts\\FRIZQT__.TTF", Scaled(10), "NONE")
+    addonDB.Widgets.CreatedBy:SetFont("Interface\\Addons\\RaidTablesViewer\\fonts\\UnicodeFont\\WarSansTT-Bliz-500.ttf", Scaled(10), "NONE")
     addonDB.Widgets.CreatedBy:SetTextColor(1, 0.8, 0) -- set the color to golden
     addonDB.Widgets.CreatedBy:SetText("Created by " .. author)
 
@@ -1357,7 +1357,7 @@ local function SetupUserInterface()
     addonDB.Widgets.Dialogs.Options.ScalingInputField:SetAutoFocus(false)
     addonDB.Widgets.Dialogs.Options.ScalingInputField:SetText(addonDB.Options.Scaling)
     addonDB.Widgets.Dialogs.Options.ScalingInputField:SetMaxLetters(5)
-    addonDB.Widgets.Dialogs.Options.ScalingInputField:SetFont("Fonts\\FRIZQT__.TTF", Scaled(12), "OUTLINE")
+    addonDB.Widgets.Dialogs.Options.ScalingInputField:SetFont("Interface\\Addons\\RaidTablesViewer\\fonts\\UnicodeFont\\WarSansTT-Bliz-500.ttf", Scaled(12), "OUTLINE")
     addonDB.Widgets.Dialogs.Options.ScalingInputField:SetScript("OnTextChanged", function(self) 
         local num = tonumber(addonDB.Widgets.Dialogs.Options.ScalingInputField:GetText())
         if num then
@@ -1615,7 +1615,7 @@ local function SetupUserInterface()
     SetPoint(addonDB.Widgets.Dialogs.Import.InputField, "TOPLEFT", addonDB.Widgets.Dialogs.Import.Frame, "TOPLEFT", 17, -30)
     addonDB.Widgets.Dialogs.Import.InputField:SetAutoFocus(true)
     addonDB.Widgets.Dialogs.Import.InputField:SetMaxLetters(0)
-    addonDB.Widgets.Dialogs.Import.InputField:SetFont("Fonts\\FRIZQT__.TTF", Scaled(12), "OUTLINE")
+    addonDB.Widgets.Dialogs.Import.InputField:SetFont("Interface\\Addons\\RaidTablesViewer\\fonts\\UnicodeFont\\WarSansTT-Bliz-500.ttf", Scaled(12), "OUTLINE")
     addonDB.Widgets.Dialogs.Import.InputField:SetScript("OnTextChanged", function(self) 
         self:SetTextColor(color.White.r, color.White.g, color.White.b)
     end)

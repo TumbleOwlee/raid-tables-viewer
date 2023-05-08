@@ -4,3 +4,6 @@
 [submodule "libs/LibDeflate"]
 	path = libs/LibDeflate
 	url = https://github.com/SafeteeWoW/LibDeflate.git
+[submodule "fonts/UnicodeFont"]
+	path = fonts/UnicodeFont
+	url = https://github.com/Daribon/UnicodeFont

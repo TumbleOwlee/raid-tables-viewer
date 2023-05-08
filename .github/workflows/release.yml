@@ -20,15 +20,17 @@ jobs:
       - name: Collect all files
         run: |
           mkdir ./RaidTablesViewer
-          mkdir -p ./RaidTablesViewer/libs/LibDeflate
-          mkdir -p ./RaidTablesViewer/libs/LibSerialize
-          mkdir -p ./RaidTablesViewer/libs/LibStub
-          mkdir -p ./RaidTablesViewer/img
           cp -r ./RaidTablesViewer.lua ./RaidTablesViewer.toc ./embeds.xml ./LICENSE ./README.md ./RaidTablesViewer
-          cp -r ./img/RaidTablesViewer.png ./RaidTablesViewer/img/
+          mkdir -p ./RaidTablesViewer/libs/LibDeflate
           cp -r ./libs/LibDeflate/LibDeflate.lua ./libs/LibDeflate/LICENSE.txt ./RaidTablesViewer/libs/LibDeflate/
+          mkdir -p ./RaidTablesViewer/libs/LibSerialize
           cp -r ./libs/LibSerialize/LibSerialize.lua ./libs/LibSerialize/LICENSE ./RaidTablesViewer/libs/LibSerialize/
+          mkdir -p ./RaidTablesViewer/libs/LibStub
           cp -r ./libs/LibStub/LibStub.lua ./RaidTablesViewer/libs/LibStub/
+          mkdir -p ./RaidTablesViewer/img
+          cp -r ./img/RaidTablesViewer.png ./RaidTablesViewer/img/
+          mkdir -p ./RaidTablesViewer/fonts/UnicodeFont
+          cp -r ./fonts/UnicodeFont/LICENSE.txt ./fonts/UnicodeFont/WarSansTT-Bliz-500.ttf ./RaidTablesViewer/fonts/UnicodeFont
           zip -r RaidTablesViewer-${{ github.ref_name }}.zip ./RaidTablesViewer
           tar -czvf RaidTablesViewer-${{ github.ref_name }}.tar.gz ./RaidTablesViewer
           
