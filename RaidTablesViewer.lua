@@ -1199,14 +1199,9 @@ local function ImportSummaryFromEncoded(sharer, encoded)
     ---------------------------------------------------------------------------------------------------------------
     -- If Addon Frame is shown, move Summary frame to the right of it, else in the center
     ---------------------------------------------------------------------------------------------------------------
-    if not addonDB.Widgets.Summary.Frame.Moved then
-        if addonDB.Widgets.Addon:IsShown() then
-            addonDB.Widgets.Summary.Frame:ClearAllPoints()
-            SetPoint(addonDB.Widgets.Summary.Frame, "TOPLEFT", addonDB.Widgets.Addon, "TOPRIGHT", 10, 0)
-        else
-            addonDB.Widgets.Summary.Frame:ClearAllPoints()
-            SetPoint(addonDB.Widgets.Summary.Frame, "CENTER", 0, 0)
-        end
+    if addonDB.Widgets.Addon:IsShown() then
+        addonDB.Widgets.Summary.Frame:ClearAllPoints()
+        SetPoint(addonDB.Widgets.Summary.Frame, "TOPLEFT", addonDB.Widgets.Addon, "TOPRIGHT", 10, 0)
     end
 
     ---------------------------------------------------------------------------------------------------------------
