@@ -1,4 +1,4 @@
-## Interface: 100100
+## Interface: 100200
 ## Version: 0.1.0
 ## IconTexture: Interface\AddOns\RaidTablesViewer\img\RaidTablesViewer.png
 ## Title: RaidTablesViewer
