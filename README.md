@@ -6,6 +6,8 @@
 ---
 
 # Raid Tables Viewer
+[![Nightly Build](https://github.com/TumbleOwlee/raid-tables-viewer/actions/workflows/nightly.yml/badge.svg)](https://github.com/TumbleOwlee/raid-tables-viewer/actions/workflows/nightly.yml) [![Release Build](https://github.com/TumbleOwlee/raid-tables-viewer/actions/workflows/release.yml/badge.svg)](https://github.com/TumbleOwlee/raid-tables-viewer/actions/workflows/release.yml)
+
 This is an addon for the [World of Warcraft](www.worldofwarcraft.com) game by Blizzard Entertainment. It is an addition to the [Raid Tables](https://github.com/TumbleOwlee/raid-tables) addon for raid participants. This is a cut down version of Raid Tables to show live updates and loot assignments to players. Raid leader using these tools should use Raid Tables instead. 
 
 ## UI Impressions
